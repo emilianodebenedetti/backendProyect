@@ -18,7 +18,7 @@ class Product {
 		const data = this.getAll();
 		if (id <= 0 || id > data.length) {
 			return {
-				error: `El producto con el id especificado no ha sido encontrado. Solo hay ${data.length} productos`,
+				error: `Producto no encontrado, hay ${data.length} productos`,
 			};
 		}
 		return data.find((element) => element.id === id);
@@ -40,7 +40,7 @@ class Product {
 		const data = this.getAll();
 		if (id <= 0 || id > data.length) {
 			return {
-				error: `El producto con el id especificado no ha sido encontrado. Solo hay ${data.length} productos.`,
+				error: `Producto no encontrado, hay ${data.length} productos`,
 			};
 		} else {
 			product.id = id;
@@ -59,7 +59,7 @@ class Product {
 		const data = this.getAll();
 		if (id <= 0 || id > data.length) {
 			return {
-				error: `El producto con el id especificado no ha sido encontrado. Solo hay ${data.length} productos`,
+				error: `Producto no encontrado, hay ${data.length} productos`,
 			};
 		} else {
 			const previousProduct = data.splice(id - 1, 1);
@@ -71,7 +71,7 @@ class Product {
 		}
 	}
 
-	// Agrega id a los productos del archivo "products.json" si sufre alguna modificacion
+	// Agrega id a los productos del json al modificarse
 	assign(empty = false) {
 		if (empty) {
 			let id = 1;
@@ -97,55 +97,29 @@ export default Product;
 // Lista de productos por defecto
 const listProducts = [
 	{
-		nombre: "Zapatos",
+		nombre: "Zapas retro",
 		precio: 90500,
 		imagen:
-			"https://cdn2.iconfinder.com/data/icons/thesquid-ink-40-free-flat-icon-pack/64/nike-dunk-128.png",
+			"https://www.iconfinder.com/icons/5668690/fitness_gym_run_shoes_sport_training_icon",
 		stock: 10,
-		descripcion: "Descripción del producto",
+		descripcion: "Descripción prod",
 		id: 1,
 	},
 	{
 		nombre: "Camisetas",
 		precio: 52000,
 		imagen:
-			"https://cdn2.iconfinder.com/data/icons/flat-jewels-icon-set/128/0011_T-Shirt.png",
+			"https://cdn2.iconfinder.com/data/icons/men-clothes/512/men-clothes-fashion-03-512.png",
 		stock: 10,
-		descripcion: "Descripción del producto",
+		descripcion: "Descripción prod",
 		id: 2,
 	},
 	{
 		nombre: "Pantalonetas",
 		precio: 80000,
-		imagen: "https://cdn3.iconfinder.com/data/icons/fitness-24/512/8-128.png",
+		imagen: "https://cdn0.iconfinder.com/data/icons/textiles/128/trousers_single_lightblue-512.png",
 		stock: 10,
-		descripcion: "Descripción del producto",
+		descripcion: "Descripción prod",
 		id: 3,
-	},
-	{
-		nombre: "Medias",
-		precio: 12400,
-		imagen:
-			"https://cdn3.iconfinder.com/data/icons/xmas-flat-set-version-two/512/Christmas_socks-128.png",
-		stock: 10,
-		descripcion: "Descripción del producto",
-		id: 4,
-	},
-	{
-		nombre: "Gorras",
-		precio: 25000,
-		imagen: "https://cdn3.iconfinder.com/data/icons/xi4dox/png/nike.png",
-		stock: 10,
-		descripcion: "Descripción del producto",
-		id: 5,
-	},
-	{
-		nombre: "Gafas",
-		precio: 12500,
-		imagen:
-			"https://cdn3.iconfinder.com/data/icons/geek-3/24/Deal_With_It_Glasses_pixel_geek_mame-128.png",
-		stock: 10,
-		descripcion: "Descripción del producto",
-		id: 6,
 	},
 ];

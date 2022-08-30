@@ -18,7 +18,7 @@ class CartFirebase {
 			const result = docs.map((doc) => ({
 				id: doc.data().id,
 				nombre: doc.data().nombre,
-				timestamp: doc.data().timestamp,
+				/* timestamp: doc.data().timestamp, */
 				products: doc.data().products,
 			}));
 			return result;
@@ -49,7 +49,7 @@ class CartFirebase {
 			const newcart = {
 				nombre: name,
 				id: 1,
-				timestamp: Date.now(),
+				/* timestamp: Date.now(), */
 				products: [],
 			};
 			const doc = this.query.doc("1");
@@ -59,7 +59,7 @@ class CartFirebase {
 			const newcart = {
 				nombre: name,
 				id: data.length + 1,
-				timestamp: Date.now(),
+				/* timestamp: Date.now(), */
 				products: [],
 			};
 			const doc = this.query.doc(`${data.length + 1}`);
@@ -71,8 +71,8 @@ class CartFirebase {
 	async addProduct(id, product) {
 		const cart = await this.get(id);
 		product.id = cart.products.length + 1;
-		product.timestamp = Date.now();
-		product.code = `AA-0${cart.products.length}`;
+		/* product.timestamp = Date.now(); */
+		/* product.code = `AA-0${cart.products.length}` */;
 		cart.products.push(product);
 		const doc = this.query.doc(`${id}`);
 		await doc.update(cart);

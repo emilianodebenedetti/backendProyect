@@ -8,7 +8,7 @@ const controller = {
 			next();
 		} else {
 			// req.body.admin != "true";
-			res.status(404).json({ error: "Acceso no autorizado" });
+			res.status(404).json({ error: "No autorizado" });
 		}
 	},
 };
