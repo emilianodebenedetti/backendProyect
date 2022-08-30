@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "ch-proyecto-backend",
+  "name": "backend-proy",
   "version": "1.0.0",
   "description": "Proyecto del curso 'Programación Backend' en CoderHouse",
   "main": "server.js",
@@ -10,13 +10,14 @@
     "start": "node src/server.js"
   },
   "keywords": [],
-  "author": "Michael Viloria",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.19"
   },
   "dependencies": {
     "express": "^4.18.1",
+    "firebase": "^9.9.3",
     "firebase-admin": "^11.0.1",
     "mongoose": "^6.5.2"
   }

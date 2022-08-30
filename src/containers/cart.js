@@ -6,10 +6,10 @@ class Cart {
 	}
 
 	getAll() {
-		// Obtiene toda la informacion sobre los carritos del archivo carts.json.
+		// info sobre carritos del archivo carts.json
 		const response = fs.readFileSync(`./src/${this.nameFile}`, "utf-8");
 		if (response === "") {
-			const message = { error: "No hay ningun carrito creado." };
+			const message = { error: "Carrito vacio" };
 			return message;
 		} else {
 			return JSON.parse(response);
@@ -17,18 +17,18 @@ class Cart {
 	}
 
 	get(id) {
-		// Obtiene un carrito por su id.
+		// carrito por id
 		const data = this.getAll();
 		if (data.error) {
 			return data;
 		} else if (id <= 0) {
 			const message = {
-				error: `Introduzca un id valido. Un número de 1 en adelante.`,
+				error: `Introduzca un id mayor a 1...`,
 			};
 			return message;
 		} else if (id > data.length) {
 			const message = {
-				error: `El carrito con el id especificado no ha sido encontrado. Solo hay ${data.length} carritos creados.`,
+				error: `Carrito no encontrado. Solo hay ${data.length} carritos creados.`,
 			};
 			return message;
 		} else {
@@ -38,7 +38,7 @@ class Cart {
 	}
 
 	getProducts(idCart) {
-		// Obtiene todos los productos que tenga un carrito por su id de carrito.
+		// Obtiene todos los productos de un carrito por id
 		const cart = this.get(idCart);
 		if (cart.error) {
 			return cart.error;
@@ -48,7 +48,7 @@ class Cart {
 	}
 
 	new(name = "cart") {
-		// Agrega o  crea un nuevo carrito.
+		//agregar/borrar carrito.
 		const data = this.getAll();
 		if (data.error) {
 			const newCart = {
@@ -104,7 +104,7 @@ class Cart {
 			return data;
 		} else if (id <= 0) {
 			return {
-				error: `Introduzca un id valido. Un número de 1 en adelante.`,
+				error: `Introduzca un id valido mayor a 1`,
 			};
 		} else if (id > data.length) {
 			return {
@@ -131,7 +131,7 @@ class Cart {
 		} else {
 			if (idProduct <= 0) {
 				return {
-					error: `Introduzca un id valido. Un número de 1 en adelante.`,
+					error: `Introduzca un id valido mayor a 1`,
 				};
 			} else if (idProduct > cart.products.length) {
 				return {

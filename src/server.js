@@ -16,10 +16,22 @@ const app = express();
 
 import admin from "firebase-admin";
 
-import serviceAccount from "./proyecto-backend-ef2b4-firebase-adminsdk-rm655-9ebea6f677.json";
+import serviceAccount from 
+"./DB/backend-19c96-firebase-adminsdk-55741-69ab33c77a.json" assert { type: "json" };
+;
+/* const admin = require(
+	"firebase-admin",
+	"assert {type:json}"
+);
+const serviceAccount = require(
+	"./DB/backend-proyect-e58f8-firebase-adminsdk-fz6uf-a5856c7d21.json",
+	"assert {type:json}"
+) */
 
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
+	databaseURL: "https://backend-19c96-default-rtdb.firebaseio.com"
+
 });
 
 // <---------- Routes ---------->
@@ -48,7 +60,7 @@ app.use(error404);
 // <---------- Servidor ---------->
 
 app.get("/", (req, res) => {
-	res.send("<h1>Primer entrega del proyecto</h1>");
+	res.send("<h1>Segunda entrega del proyecto</h1>");
 });
 
 // <---------- Servidor ---------->

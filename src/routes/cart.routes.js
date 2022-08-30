@@ -9,13 +9,13 @@ const routerCart = express.Router();
 // <------ Mongodb ------>
 
 import { cartsModel } from "../models/carts.schema.js";
-import CartMongoDB from "../dao/cartMongoDB.js";
-const cart = new CartMongoDB(cartsModel);
+import CartMongoDB from "../dbs/cartMongoDB.js";
+/* const cart = new CartMongoDB(cartsModel); */
 
 // <------ Firebase ------>
 
-// import CartFirebase from "../dao/cartFirebase.js";
-// const cart = new CartFirebase("carts");
+import CartFirebase from "../dao/cartFirebase.js";
+const cart = new CartFirebase("carts");
 
 // <------ Queries ------>
 
@@ -60,7 +60,7 @@ routerCart.post("/:id/productos", (req, res) => {
 	) {
 		res.json({
 			error:
-				"Uno ó varios de los campos ha quedado vacio. Verifique que tenga todos los datos solicitados: nombre, precio, imagen, descripcion, stock",
+				"Error, verifique los campos anteriormente completados",
 		});
 	} else {
 		const product = {
