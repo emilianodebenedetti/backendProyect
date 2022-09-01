@@ -1,18 +1,7 @@
 import express from "express";
 const app = express();
 
-// <---------- Mongoose ---------->
-
-// import mongoose from "mongoose";
-
-// const URL_MONGOOSE = "mongodb://localhost:27017/ecommerce";
-// mongoose.connect(URL_MONGOOSE, {
-// 	useNewUrlParser: true,
-// 	useUnifiedTopology: true,
-// });
-// console.log("Base de datos conectada");
-
-// <---------- Firebase ---------->
+//  Firebase 
 
 import admin from "firebase-admin";
 
@@ -34,7 +23,7 @@ admin.initializeApp({
 
 });
 
-// <---------- Routes ---------->
+//  Routes 
 
 import routerProducts from "./routes/products.routes.js";
 app.use("/api/productos", routerProducts);
@@ -42,7 +31,7 @@ app.use("/api/productos", routerProducts);
 import routerCart from "./routes/cart.routes.js";
 app.use("/api/carrito", routerCart);
 
-// <---------- Servidor Error 404 ---------->
+// Error 404 
 
 function error404(req, res, next) {
 	const message = {
@@ -57,13 +46,13 @@ function error404(req, res, next) {
 
 app.use(error404);
 
-// <---------- Servidor ---------->
+//  Servidor 
 
 app.get("/", (req, res) => {
 	res.send("<h1>Segunda entrega del proyecto</h1>");
 });
 
-// <---------- Servidor ---------->
+//  Servidor 
 
 const PORT = process.env.PORT || 8080;
 
