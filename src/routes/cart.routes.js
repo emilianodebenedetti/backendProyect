@@ -1,16 +1,7 @@
 import express from "express";
+
 const routerCart = express.Router();
 
-// <------ Container ------>
-
-// import Cart from "../cart.js";
-// const cart = new Cart("carts.json");
-
-// <------ Mongodb ------>
-
-import { cartsModel } from "../models/carts.schema.js";
-import CartMongoDB from "../dbs/cartMongoDB.js";
-/* const cart = new CartMongoDB(cartsModel); */
 
 // <------ Firebase ------>
 
