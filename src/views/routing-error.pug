@@ -1,0 +1,8 @@
+doctype html
+html(lang="en")
+    - const pageName = "Error de routing";
+    include header/head.pug
+    body 
+    h1 Error    
+        form(action="/redirect-login", method="post") 
+            button(type="submit") Volver a login

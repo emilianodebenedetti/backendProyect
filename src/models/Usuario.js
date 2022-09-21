@@ -6,6 +6,6 @@ const usrSchema = new Schema ({
     password: { type: String, required: true },
 });
 
-const Usuario = mongoose.model(usuarios, usrSchema);
+const Usuario = mongoose.model("usuarios", usrSchema);
 
 export default Usuario;

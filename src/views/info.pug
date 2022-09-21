@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")   
+    - const pageName = "Fail Signup";
+    include header/head.pug
+    body  
+        h1 Datos del proyecto 
+        div 
+            ul 
+                li
+                    h3 Argumentos de entrada 
+                li
+                li
+                    h3 Plataforma (S.O) 
+                li
+                li
+                    h3 Versión de Node.Js 
+                li
+                li
+                    h3 Memoria total reservada 
+                li
+                li
+                    h3 Path de ejecución 
+                li
+                li
+                    h3 Process id
+                li
+                li
+                    h3 Carpeta del proyecto
+                li
+            ul 
+                each data in lista 
+                    li 
+                        h3=data

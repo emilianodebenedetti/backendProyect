@@ -1,0 +1,8 @@
+doctype html
+html(lang="en")
+    - const pageName = "Fail Signup";
+    include header/head.pug
+    body 
+        h2 Error al registrarse...revise sus datos 
+        form(action="/redirect-signup" method="post")
+            button(type="submit") Ir atrás 

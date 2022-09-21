@@ -1,0 +1,8 @@
+doctype html
+html(lang="en")
+    - const pageName = "Home";
+    include header/head.pug
+        body
+            h2 ¡¡ Hola, #{username}, bienvenido al incio !!
+            form(action="/logout", method="post") 
+                button(type="submit") Cerrar sesión

@@ -1,0 +1,8 @@
+doctype html
+html(lang="en")
+    - const pageName = "Fail Login";
+    include header/head.pug
+    body
+        h1 Error con el inicio de sesión
+        form(action="/redirect-login" method="post") 
+            button(type="submit") Ir atrás

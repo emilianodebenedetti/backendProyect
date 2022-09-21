@@ -1,13 +1,13 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcrypt";
-import User from "../src/models/Usuario";
+import User from "../models/Usuario.js";
 
 
 const isValidPsw = (user, password) =>
 	bcrypt.compareSync(password, user.password);
 const createHash = (password) =>
-	bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+	bcrypt.hashSync(password, bcrypt.genSaltSync(1), null);
 
 passport.use(
 	"login",
