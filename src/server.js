@@ -4,10 +4,15 @@ import passport from "passport";
 import session from "express-session";
 import router from "./routes/routes.js"
 
-const cluster = require('cluster');
+/* const cluster = require('cluster');
 const http = require('http');
-const numCPUs = require('os').cpus() .length;
+const numCPUs = require('os').cpus() .length; */
 
+/* 
+import http from 'node:http';
+import { Cluster } from "node:cluster";
+import process from "node:process";
+import { cpus } from "node:os"; */
 /*import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
 import LocalStrategy  from "passport-local";
