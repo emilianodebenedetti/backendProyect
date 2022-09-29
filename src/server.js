@@ -4,6 +4,8 @@ import passport from "passport";
 import session from "express-session";
 import router from "./routes/routes.js"
 
+import compression from "compression";
+import logger from "./middlewares/logger.js"
 /* const cluster = require('cluster');
 const http = require('http');
 const numCPUs = require('os').cpus() .length; */
