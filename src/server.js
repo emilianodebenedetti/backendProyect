@@ -1,40 +1,23 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import passport from "passport"; 
 import session from "express-session";
+import passport from "passport"; 
 import router from "./routes/routes.js"
-
-import compression from "compression";
-import logger from "./middlewares/logger.js"
-/* const cluster = require('cluster');
-const http = require('http');
-const numCPUs = require('os').cpus() .length; */
-
-/* 
-import http from 'node:http';
-import { Cluster } from "node:cluster";
-import process from "node:process";
-import { cpus } from "node:os"; */
-/*import MongoStore from "connect-mongo";
-import mongoose from "mongoose";
-import LocalStrategy  from "passport-local";
-import * as dotenv from "dotenv"; 
-dotenv.config();
-import MongoStore from "connect-mongo";*/
+import MongoStore from "connect-mongo";
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json())
+app.use(express.json());
 
-const cookieAge = (mins) => {
-	if (mins === 1) {
+const ageCookie = (minutes) => {
+	if (minutes === 1) {
 		return 60000;
 	} else {
-		return mins * 60000;
+		return minutes * 60000;
 	}
 };
 
-app.use(cookieParser());
+/* app.use(cookieParser());
 app.use(
 	session({
 		secret: "secret",
@@ -42,19 +25,33 @@ app.use(
 		saveUninitialized: false,
 		rolling: true,
 		cookie: {
-			maxAge: cookieAge(2),
+			maxAge: ageCookie(2),
 			secure: false,
 			httpOnly: false,
 		},
 	})
-);
+); */
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.set("view engine", ".pug");
 app.set("views", "./src/views");
+
 app.use(router);
 
+app.use(session({
+	store: MongoStore.create({ 
+		mongoUrl: 'mongodb+srv://backend-db:123456@backend-db.mqhxe6l.mongodb.net/?retryWrites=true&w=majority',
+	}),
+
+	secret: process.env.SECRET,
+	resave: false,
+	saveUninitialized: true,
+	cookie: {
+		maxAge: 60000 
+	}
+}))
 
 export default app
 // Error 404 
@@ -74,19 +71,7 @@ app.use(error404); */
 /* mongoose
  */
 /* Sessions */
-/* app.use(session({
-	store: MongoStore.create({ 
-		mongoUrl: 'mongodb+srv://localhost/',
-		mongoOptions: advancedOptions 
-	}),
 
-	secret: 'secreto',
-	resave: false,
-	saveUninitialized: false,
-	cookie: {
-		maxAge: 60000 
-	}
-})) */
 
 
 

@@ -2,7 +2,7 @@ import  Log4js  from "log4js";
 import * as dotenv from "dotenv"; 
 dotenv.config();
 
-log4js.configure({
+Log4js.configure({s
     appenders: {
         consola: {type: 'console'}, 
         archivoErrores : {type:'file', filename: 'errores.log'},
@@ -29,3 +29,4 @@ if (process.env.NODE_ENV === 'PROD'){
     logger = Log4js.getLogger();
 }
 module.exports = logger
+/* export default logger */
