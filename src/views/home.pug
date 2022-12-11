@@ -1,8 +1,14 @@
-doctype html
-html(lang="en")
+doctype html 
+html(lang="en") 
     - const pageName = "Home";
-    include header/head.pug
         body
-            h2 ¡¡ Hola, #{username}, bienvenido al incio !!
+            h2 Hola #{username}, bienvenido/a al incio!!
+            h3 Agregue su producto
+            form(action="/add", method="post")
+                input(type="name" name="name" placeholder="Nombre")
+                input(type="number" name="price" placeholder="Precio")
+                input(type="number" name="stock" placeholder="Stock")
+                button(type="submit") Subir producto
             form(action="/logout", method="post") 
                 button(type="submit") Cerrar sesión
+                include header/head.pug

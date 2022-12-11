@@ -1,12 +1,12 @@
 doctype html
-html(lang="en")
+html
     - const pageName = "Login";
     include header/head.pug
     body 
         h1 Iniciar sesion
-        form(action="/login", method="post") 
-            input(type="email" name="username" placeholder="Introduzca su email...")
-            input(type="password" name="password" placeholder="Introduzca su contraseña...")
-            button(type="submit") Iniciar sesión
-        form(action="/redirect-signup", method="post") 
-            button(type="submit") Regístrate!
+        form(action ="/login", method ="post") 
+            input(type ="email" name="username" placeholder="Introduzca su email...")
+            input(type ="password" name="password" placeholder="Introduzca su contraseña...")
+            button(type ="submit") Iniciar sesión
+        form(action ="/redirect-signup", method ="post") 
+            button(type ="submit") Regístrate!

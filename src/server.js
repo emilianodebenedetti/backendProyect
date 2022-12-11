@@ -2,22 +2,34 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport"; 
-import router from "./routes/routes.js"
-import MongoStore from "connect-mongo";
+import compression from "compression";
+import cors from "cors";
+import config from "../config.js";
+import PageRouter from "./routes/routes.js";
+import RouterProds from "./routes/products.js";
+import * as dotenv from "dotenv";
+import mongoose from "mongoose";
+import { logApp, logError } from "./utils/apiLogs.js";
+dotenv.config();
 
 const app = express();
+
+if (config.NODE_ENV == "development") app.use(cors());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const ageCookie = (minutes) => {
-	if (minutes === 1) {
+app.use(compression())
+
+const ageCookie = (mins) => {
+	if (mins === 1) {
 		return 60000;
 	} else {
-		return minutes * 60000;
+		return mins * 60000;
 	}
 };
 
-/* app.use(cookieParser());
+app.use(cookieParser());
 app.use(
 	session({
 		secret: "secret",
@@ -30,7 +42,7 @@ app.use(
 			httpOnly: false,
 		},
 	})
-); */
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -38,49 +50,19 @@ app.use(passport.session());
 app.set("view engine", ".pug");
 app.set("views", "./src/views");
 
-app.use(router);
+const routerProds = new RouterProds();
+app.use("/products", routerProds.start());
 
-app.use(session({
-	store: MongoStore.create({ 
-		mongoUrl: 'mongodb+srv://backend-db:123456@backend-db.mqhxe6l.mongodb.net/?retryWrites=true&w=majority',
-	}),
+const routerPage = new PageRouter();
+app.use("/", routerPage.start());
 
-	secret: process.env.SECRET,
-	resave: false,
-	saveUninitialized: true,
-	cookie: {
-		maxAge: 60000 
-	}
-}))
+const PORT = config.PORT;
+
+const server = app.listen(PORT, () => {
+  mongoose.connect("mongodb+srv://backendDatabase:emiluna88@backendDatabase.8avqpoo.mongodb.net/backenddatabase?retryWrites=true&w=majority");
+  logApp.info(`Servidor HTTP escuchando en el puerto ${server.address().port}`);
+});
+server.on("error", (error) => logError.error(`Error en servidor: ${error}`));
 
 export default app
-// Error 404 
-/* function error404(req, res, next) {
-	const message = {
-		error: 404,
-		descripcion: `ruta ${req.url} y metodo ${req.method} no estan implementados`,
-	};
-	if (req.url !== "/" || (req.url === "/" && req.method !== "GET")) {
-		res.status(404).json(message);
-	}
-	next();
-}
-app.use(error404); */
 
-
-/* mongoose
- */
-/* Sessions */
-
-
-
-
-//  ------------ Servidor ---------------- 
-/* const PORT = process.env.PORT || 8080;
-
-const server = app.listen(PORT, async () => {
-	await mongoose.connect("mongodb+srv://backend-db:<password>@backend-db.mqhxe6l.mongodb.net/test")
-	console.log(`Servidor HTTP escuchando en el puerto ${server.address().port}`);
-});
-
-server.on("error", (error) => console.log(`Error en servidor ${error}`)); */

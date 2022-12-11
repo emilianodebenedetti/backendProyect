@@ -6,8 +6,9 @@ import User from "../models/Usuario.js";
 
 const isValidPsw = (user, password) =>
 	bcrypt.compareSync(password, user.password);
+	
 const createHash = (password) =>
-	bcrypt.hashSync(password, bcrypt.genSaltSync(1), null);
+	bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
 
 passport.use(
 	"login",
@@ -53,7 +54,7 @@ passport.use(
 	)
 );
 
-passport.serializeUser((user, done) => done(null, user._id));
+passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser((id, done) => User.findById(id, done));
 
 const authentication = (req, res, next) => {
